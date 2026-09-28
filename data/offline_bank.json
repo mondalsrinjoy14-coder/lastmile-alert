@@ -1,0 +1,475 @@
+{
+ "hi": {
+  "events": {
+   "Flood": "बाढ़",
+   "Cyclone": "चक्रवात",
+   "Earthquake": "भूकंप",
+   "Heatwave": "लू",
+   "Landslide": "भूस्खलन",
+   "Thunderstorm": "आंधी",
+   "Fire": "आग"
+  },
+  "header": "{icon} {area} के लिए {event} चेतावनी।",
+  "severity": {
+   "Extreme": "यह एक अत्यधिक चेतावनी है. अभी कदम उठाएं।",
+   "Severe": "यह एक गंभीर चेतावनी है. अब तैयार हो जाओ.",
+   "Advisory": "यह एक सलाह है. सतर्क रहें और सावधान रहें."
+  },
+  "actions": {
+   "Move to higher ground.": "ऊंची भूमि पर चले जाएं.",
+   "Stay indoors.": "घर के अंदर रहना।",
+   "Do not go near rivers or streams.": "नदियों या झरनों के पास न जाएँ।",
+   "Switch off gas and electricity.": "गैस और बिजली बंद कर दें.",
+   "Keep emergency supplies ready.": "आपातकालीन आपूर्ति तैयार रखें.",
+   "Do not spread rumours.": "अफवाहें मत फैलाओ.",
+   "Follow official announcements.": "आधिकारिक घोषणाओं का पालन करें.",
+   "Boil drinking water before use.": "उपयोग से पहले पीने के पानी को उबाल लें।",
+   "Avoid flooded roads.": "बाढ़ वाली सड़कों से बचें.",
+   "Stay away from weak buildings.": "कमजोर इमारतों से दूर रहें.",
+   "Keep children and old people safe.": "बच्चों और बूढ़ों को सुरक्षित रखें.",
+   "Move to the nearest relief camp.": "निकटतम राहत शिविर में चले जाएँ।",
+   "Do not touch fallen power lines.": "गिरी हुई विद्युत लाइनों को न छुएं।",
+   "Keep your phone charged.": "अपने फ़ोन को चार्ज रखें.",
+   "Carry important documents with you.": "महत्वपूर्ण दस्तावेज़ अपने साथ रखें।",
+   "Fishermen must not go to sea.": "मछुआरों को समुद्र में नहीं जाना चाहिए.",
+   "Stay alert and be careful.": "सतर्क रहें और सावधान रहें.",
+   "Evacuate immediately if told to.": "यदि कहा जाए तो तुरंत खाली कर दें।",
+   "Close doors and windows.": "दरवाज़े और खिड़कियाँ बंद कर दें.",
+   "Drink water and stay in the shade.": "पानी पियें और छाया में रहें।"
+  },
+  "safety": [
+   "सबसे पहले बच्चों और बूढ़ों की मदद करें।",
+   "नए अपडेट के लिए रेडियो सुनें।"
+  ]
+ },
+ "bn": {
+  "events": {
+   "Flood": "বন্যা",
+   "Cyclone": "ঘূর্ণিঝড়",
+   "Earthquake": "ভূমিকম্প",
+   "Heatwave": "তাপপ্রবাহ",
+   "Landslide": "ভূমিধস",
+   "Thunderstorm": "বজ্রপাত",
+   "Fire": "আগুন"
+  },
+  "header": "{icon} {event} {area}-এর জন্য সতর্কতা।",
+  "severity": {
+   "Extreme": "এটি একটি চরম সতর্কতা। এখনই কাজ করুন।",
+   "Severe": "এটি একটি গুরুতর সতর্কতা। এখন রেডি হও।",
+   "Advisory": "এটি একটি উপদেষ্টা। সতর্ক থাকুন এবং সতর্ক থাকুন।"
+  },
+  "actions": {
+   "Move to higher ground.": "উচ্চ স্থলে সরান।",
+   "Stay indoors.": "ঘরের ভিতরেই থাকুন।",
+   "Do not go near rivers or streams.": "নদী বা স্রোতের কাছাকাছি যাবেন না।",
+   "Switch off gas and electricity.": "গ্যাস এবং বিদ্যুৎ বন্ধ করুন।",
+   "Keep emergency supplies ready.": "জরুরী জিনিসপত্র প্রস্তুত রাখুন।",
+   "Do not spread rumours.": "গুজব ছড়াবেন না।",
+   "Follow official announcements.": "অফিসিয়াল ঘোষণা অনুসরণ করুন.",
+   "Boil drinking water before use.": "ব্যবহারের আগে পানীয় জল ফুটিয়ে নিন।",
+   "Avoid flooded roads.": "প্লাবিত রাস্তা এড়িয়ে চলুন।",
+   "Stay away from weak buildings.": "দুর্বল ভবন থেকে দূরে থাকুন।",
+   "Keep children and old people safe.": "শিশু ও বৃদ্ধদের নিরাপদে রাখুন।",
+   "Move to the nearest relief camp.": "নিকটতম ত্রাণ শিবিরে যান।",
+   "Do not touch fallen power lines.": "পতিত পাওয়ার লাইন স্পর্শ করবেন না।",
+   "Keep your phone charged.": "আপনার ফোন চার্জে রাখুন।",
+   "Carry important documents with you.": "গুরুত্বপূর্ণ কাগজপত্র সঙ্গে রাখুন।",
+   "Fishermen must not go to sea.": "জেলেদের সমুদ্রে যেতে হবে না।",
+   "Stay alert and be careful.": "সতর্ক থাকুন এবং সতর্ক থাকুন।",
+   "Evacuate immediately if told to.": "বলা হলে অবিলম্বে সরে যান।",
+   "Close doors and windows.": "দরজা জানালা বন্ধ করুন।",
+   "Drink water and stay in the shade.": "পানি পান করুন এবং ছায়ায় থাকুন।"
+  },
+  "safety": [
+   "প্রথমে শিশু এবং বৃদ্ধদের সাহায্য করুন।",
+   "নতুন আপডেটের জন্য রেডিও শুনুন।"
+  ]
+ },
+ "as": {
+  "events": {
+   "Flood": "বানপানী",
+   "Cyclone": "ঘূৰ্ণীবতাহ",
+   "Earthquake": "ভূমিকম্প",
+   "Heatwave": "গৰমৰ ঢৌ",
+   "Landslide": "ভূমিস্খলন",
+   "Thunderstorm": "ধুমুহা",
+   "Fire": "জুই"
+  },
+  "header": "{icon} {area}ৰ বাবে {event} সতৰ্কবাণী।",
+  "severity": {
+   "Extreme": "এইটো এটা EXTREME সতৰ্কবাণী। এতিয়াই কাম কৰক।",
+   "Severe": "এইটো এটা SVERE সতৰ্কবাণী। এতিয়াই সাজু হওক।",
+   "Advisory": "এইটো এটা ADVISORY। সজাগ হৈ থাকক আৰু সাৱধান হওক।"
+  },
+  "actions": {
+   "Move to higher ground.": "ওখ ঠাইলৈ যাওক।",
+   "Stay indoors.": "ঘৰৰ ভিতৰতে থাকক।",
+   "Do not go near rivers or streams.": "নদী বা নৈৰ ওচৰলৈ নাযাব।",
+   "Switch off gas and electricity.": "গেছ আৰু বিদ্যুৎ বন্ধ কৰক।",
+   "Keep emergency supplies ready.": "জৰুৰীকালীন সামগ্ৰী সাজু কৰি ৰাখক।",
+   "Do not spread rumours.": "উৰাবাতৰি প্ৰচাৰ নকৰিব।",
+   "Follow official announcements.": "চৰকাৰী ঘোষণা অনুসৰণ কৰক।",
+   "Boil drinking water before use.": "ব্যৱহাৰৰ আগতে খোৱাপানী উতলাই লওক।",
+   "Avoid flooded roads.": "বানপানীৰ পথ পৰিহাৰ কৰক।",
+   "Stay away from weak buildings.": "দুৰ্বল অট্টালিকাৰ পৰা আঁতৰি থাকক।",
+   "Keep children and old people safe.": "শিশু আৰু বৃদ্ধক সুৰক্ষিত ৰাখক।",
+   "Move to the nearest relief camp.": "ওচৰৰ সাহায্য শিবিৰলৈ গুচি যাওক।",
+   "Do not touch fallen power lines.": "সৰি পৰা বিদ্যুৎ পৰিবাহী তাঁৰ স্পৰ্শ নকৰিব।",
+   "Keep your phone charged.": "আপোনাৰ ফোনটো চাৰ্জ কৰি ৰাখক।",
+   "Carry important documents with you.": "লগত গুৰুত্বপূৰ্ণ নথি-পত্ৰ লৈ যাওক।",
+   "Fishermen must not go to sea.": "মাছমৰীয়াসকলে সাগৰলৈ যাব নালাগে।",
+   "Stay alert and be careful.": "সজাগ হৈ থাকক আৰু সাৱধান হওক।",
+   "Evacuate immediately if told to.": "কোৱা হ’লে তৎক্ষণাত খালী কৰিব লাগে।",
+   "Close doors and windows.": "দুৱাৰ-খিৰিকী বন্ধ কৰক।",
+   "Drink water and stay in the shade.": "পানী খাই ছাঁত থাকক।"
+  },
+  "safety": [
+   "প্ৰথমে ল'ৰা-ছোৱালী আৰু বৃদ্ধক সহায় কৰক।",
+   "নতুন আপডেটৰ বাবে ৰেডিঅ' শুনক।"
+  ]
+ },
+ "or": {
+  "events": {
+   "Flood": "ବନ୍ୟା",
+   "Cyclone": "ଘୂର୍ଣ୍ଣିବଳୟ",
+   "Earthquake": "ଭୂକମ୍ପ",
+   "Heatwave": "ଉତ୍ତାପ",
+   "Landslide": "ଭୂସ୍ଖଳନ",
+   "Thunderstorm": "ବଜ୍ରପାତ",
+   "Fire": "ଅଗ୍ନି"
+  },
+  "header": "{icon} {area} ପାଇଁ {event} ସତର୍କତା।",
+  "severity": {
+   "Extreme": "ଏହା ଏକ EXTREME ଚେତାବନୀ  ବର୍ତ୍ତମାନ କାର୍ଯ୍ୟ କର",
+   "Severe": "ଏହା ଏକ ଗୁରୁତର ଚେତାବନୀ  ବର୍ତ୍ତମାନ ପ୍ରସ୍ତୁତ ହୁଅ",
+   "Advisory": "ଏହା ଏକ ପରାମର୍ଶ  ସତର୍କ ରୁହ ଏବଂ ସତର୍କ ରୁହ"
+  },
+  "actions": {
+   "Move to higher ground.": "ଉଚ୍ଚ ଭୂମିକୁ ଯାଆନ୍ତୁ",
+   "Stay indoors.": "ଘର ଭିତରେ ରୁହନ୍ତୁ",
+   "Do not go near rivers or streams.": "ନଦୀ କିମ୍ବା ଝରଣା ନିକଟକୁ ଯାଅ ନାହିଁ।",
+   "Switch off gas and electricity.": "ଗ୍ୟାସ୍ ଏବଂ ବିଦ୍ୟୁତ୍ ବନ୍ଦ କରନ୍ତୁ",
+   "Keep emergency supplies ready.": "ଜରୁରୀକାଳୀନ ସାମଗ୍ରୀ ପ୍ରସ୍ତୁତ ରଖନ୍ତୁ",
+   "Do not spread rumours.": "ଗୁଜବ ପ୍ରଚାର କରନ୍ତୁ ନାହିଁ",
+   "Follow official announcements.": "ସରକାରୀ ଘୋଷଣା ଅନୁସରଣ କରନ୍ତୁ",
+   "Boil drinking water before use.": "ବ୍ୟବହାର ପୂର୍ବରୁ ପାନୀୟ ଜଳକୁ ଫୁଟାନ୍ତୁ",
+   "Avoid flooded roads.": "ବନ୍ୟା ପରିସ୍ଥିତିକୁ ଏଡ଼ାନ୍ତୁ",
+   "Stay away from weak buildings.": "ଦୁର୍ବଳ ଅଟ୍ଟାଳିକାଠାରୁ ଦୂରରେ ରୁହ",
+   "Keep children and old people safe.": "ପିଲା ଏବଂ ବୃଦ୍ଧ ଲୋକଙ୍କୁ ସୁରକ୍ଷିତ ରଖନ୍ତୁ",
+   "Move to the nearest relief camp.": "ନିକଟସ୍ଥ ରିଲିଫ୍ କ୍ୟାମ୍ପକୁ ଯାଆନ୍ତୁ",
+   "Do not touch fallen power lines.": "ପତିତ ବିଦ୍ୟୁତ୍ ଲାଇନଗୁଡିକ ସ୍ପର୍ଶ କରନ୍ତୁ ନାହିଁ",
+   "Keep your phone charged.": "ଆପଣଙ୍କ ଫୋନ୍ ଚାର୍ଜ ରଖନ୍ତୁ",
+   "Carry important documents with you.": "ତୁମ ସହିତ ଗୁରୁତ୍ୱପୂର୍ଣ୍ଣ ଡକ୍ୟୁମେଣ୍ଟ୍ ବହନ କର",
+   "Fishermen must not go to sea.": "ମତ୍ସ୍ୟଜୀବୀମାନେ ସମୁଦ୍ରକୁ ଯିବା ଉଚିତ୍ ନୁହେଁ",
+   "Stay alert and be careful.": "ସତର୍କ ରୁହ ଏବଂ ସତର୍କ ରୁହ",
+   "Evacuate immediately if told to.": "ଯଦି କୁହାଯାଏ ତେବେ ତୁରନ୍ତ ସ୍ଥାନାନ୍ତର କର",
+   "Close doors and windows.": "କବାଟ ଏବଂ ଝରକା ବନ୍ଦ କରନ୍ତୁ।",
+   "Drink water and stay in the shade.": "ପାଣି ପିଅନ୍ତୁ ଏବଂ ଛାଇରେ ରୁହନ୍ତୁ"
+  },
+  "safety": [
+   "ପ୍ରଥମେ ପିଲା ଏବଂ ବୃଦ୍ଧ ଲୋକଙ୍କୁ ସାହାଯ୍ୟ କରନ୍ତୁ",
+   "ନୂତନ ଅଦ୍ୟତନ ପାଇଁ ରେଡିଓ ଶୁଣନ୍ତୁ"
+  ]
+ },
+ "ta": {
+  "events": {
+   "Flood": "வெள்ளம்",
+   "Cyclone": "சூறாவளி",
+   "Earthquake": "நிலநடுக்கம்",
+   "Heatwave": "வெப்ப அலை",
+   "Landslide": "நிலச்சரிவு",
+   "Thunderstorm": "இடியுடன் கூடிய மழை",
+   "Fire": "நெருப்பு"
+  },
+  "header": "{icon} {area} க்கான {event} ALERT.",
+  "severity": {
+   "Extreme": "இது ஒரு தீவிர எச்சரிக்கை. இப்போது செயல்படுங்கள்.",
+   "Severe": "இது ஒரு கடுமையான எச்சரிக்கை. இப்போதே தயாராகுங்கள்.",
+   "Advisory": "இது ஒரு ஆலோசனை. எச்சரிக்கையாகவும் கவனமாகவும் இருங்கள்."
+  },
+  "actions": {
+   "Move to higher ground.": "உயரமான நிலத்திற்கு நகர்த்தவும்.",
+   "Stay indoors.": "வீட்டுக்குள்ளேயே இருங்கள்.",
+   "Do not go near rivers or streams.": "ஆறுகள் அல்லது ஓடைகளுக்கு அருகில் செல்ல வேண்டாம்.",
+   "Switch off gas and electricity.": "எரிவாயு மற்றும் மின்சாரத்தை அணைக்கவும்.",
+   "Keep emergency supplies ready.": "அவசரகால பொருட்களை தயார் நிலையில் வைத்திருங்கள்.",
+   "Do not spread rumours.": "வதந்திகளை பரப்ப வேண்டாம்.",
+   "Follow official announcements.": "அதிகாரப்பூர்வ அறிவிப்புகளைப் பின்பற்றவும்.",
+   "Boil drinking water before use.": "பயன்பாட்டிற்கு முன் குடிநீரை கொதிக்க வைக்கவும்.",
+   "Avoid flooded roads.": "வெள்ளம் நிறைந்த சாலைகளைத் தவிர்க்கவும்.",
+   "Stay away from weak buildings.": "பலவீனமான கட்டிடங்களிலிருந்து விலகி இருங்கள்.",
+   "Keep children and old people safe.": "குழந்தைகள் மற்றும் வயதானவர்களை பாதுகாப்பாக வைத்திருங்கள்.",
+   "Move to the nearest relief camp.": "அருகில் உள்ள நிவாரண முகாமுக்கு செல்லவும்.",
+   "Do not touch fallen power lines.": "விழுந்து கிடக்கும் மின் கம்பிகளை தொடாதீர்கள்.",
+   "Keep your phone charged.": "உங்கள் ஃபோனை சார்ஜ் செய்து வைக்கவும்.",
+   "Carry important documents with you.": "முக்கிய ஆவணங்களை உங்களுடன் எடுத்துச் செல்லுங்கள்.",
+   "Fishermen must not go to sea.": "மீனவர்கள் கடலுக்கு செல்ல வேண்டாம்.",
+   "Stay alert and be careful.": "எச்சரிக்கையாகவும் கவனமாகவும் இருங்கள்.",
+   "Evacuate immediately if told to.": "சொன்னால் உடனே காலி செய்யுங்கள்.",
+   "Close doors and windows.": "கதவுகள் மற்றும் ஜன்னல்களை மூடு.",
+   "Drink water and stay in the shade.": "தண்ணீர் குடித்துவிட்டு நிழலில் இருங்கள்."
+  },
+  "safety": [
+   "முதலில் குழந்தைகள் மற்றும் வயதானவர்களுக்கு உதவுங்கள்.",
+   "புதிய புதுப்பிப்புகளுக்கு வானொலியைக் கேளுங்கள்."
+  ]
+ },
+ "te": {
+  "events": {
+   "Flood": "వరద",
+   "Cyclone": "తుఫాను",
+   "Earthquake": "భూకంపం",
+   "Heatwave": "హీట్ వేవ్",
+   "Landslide": "కొండచరియలు విరిగిపడ్డాయి",
+   "Thunderstorm": "పిడుగుపాటు",
+   "Fire": "అగ్ని"
+  },
+  "header": "{icon} {event} {area} కోసం హెచ్చరిక.",
+  "severity": {
+   "Extreme": "ఇది విపరీతమైన హెచ్చరిక. ఇప్పుడే పని చేయండి.",
+   "Severe": "ఇది తీవ్రమైన హెచ్చరిక. ఇప్పుడే సిద్ధంగా ఉండు.",
+   "Advisory": "ఇది ఒక సలహా. అప్రమత్తంగా ఉండండి మరియు జాగ్రత్తగా ఉండండి."
+  },
+  "actions": {
+   "Move to higher ground.": "ఎత్తైన భూమికి తరలించండి.",
+   "Stay indoors.": "ఇంట్లోనే ఉండండి.",
+   "Do not go near rivers or streams.": "నదులు లేదా వాగుల దగ్గరకు వెళ్లవద్దు.",
+   "Switch off gas and electricity.": "గ్యాస్ మరియు విద్యుత్ స్విచ్ ఆఫ్ చేయండి.",
+   "Keep emergency supplies ready.": "అత్యవసర సామాగ్రిని సిద్ధంగా ఉంచుకోండి.",
+   "Do not spread rumours.": "పుకార్లు వ్యాప్తి చేయవద్దు.",
+   "Follow official announcements.": "అధికారిక ప్రకటనలను అనుసరించండి.",
+   "Boil drinking water before use.": "ఉపయోగం ముందు త్రాగునీటిని మరిగించండి.",
+   "Avoid flooded roads.": "వరదలున్న రోడ్లను నివారించండి.",
+   "Stay away from weak buildings.": "బలహీనమైన భవనాలకు దూరంగా ఉండండి.",
+   "Keep children and old people safe.": "పిల్లలు మరియు వృద్ధులను సురక్షితంగా ఉంచండి.",
+   "Move to the nearest relief camp.": "సమీపంలోని సహాయ శిబిరానికి తరలించండి.",
+   "Do not touch fallen power lines.": "పడిపోయిన విద్యుత్ లైన్లను తాకవద్దు.",
+   "Keep your phone charged.": "మీ ఫోన్‌ను ఛార్జ్‌లో ఉంచుకోండి.",
+   "Carry important documents with you.": "ముఖ్యమైన పత్రాలను మీతో తీసుకెళ్లండి.",
+   "Fishermen must not go to sea.": "మత్స్యకారులు సముద్రంలోకి వెళ్లకూడదు.",
+   "Stay alert and be careful.": "అప్రమత్తంగా ఉండండి మరియు జాగ్రత్తగా ఉండండి.",
+   "Evacuate immediately if told to.": "చెబితే వెంటనే ఖాళీ చేయండి.",
+   "Close doors and windows.": "తలుపులు మరియు కిటికీలను మూసివేయండి.",
+   "Drink water and stay in the shade.": "నీరు త్రాగి నీడలో ఉండండి."
+  },
+  "safety": [
+   "ముందుగా పిల్లలు మరియు వృద్ధులకు సహాయం చేయండి.",
+   "కొత్త అప్‌డేట్‌ల కోసం రేడియోను వినండి."
+  ]
+ },
+ "kn": {
+  "events": {
+   "Flood": "ಪ್ರವಾಹ",
+   "Cyclone": "ಸೈಕ್ಲೋನ್",
+   "Earthquake": "ಭೂಕಂಪ",
+   "Heatwave": "ಶಾಖದ ಅಲೆ",
+   "Landslide": "ಭೂಕುಸಿತ",
+   "Thunderstorm": "ಚಂಡಮಾರುತ",
+   "Fire": "ಬೆಂಕಿ"
+  },
+  "header": "{icon} {event} ALERT ಗಾಗಿ {area}.",
+  "severity": {
+   "Extreme": "ಇದೊಂದು EXTREME ಎಚ್ಚರಿಕೆ. ಈಗ ಕಾರ್ಯನಿರ್ವಹಿಸಿ.",
+   "Severe": "ಇದು ತೀವ್ರ ಎಚ್ಚರಿಕೆ. ಈಗಲೇ ಸಿದ್ಧರಾಗಿ.",
+   "Advisory": "ಇದು ಸಲಹೆಯಾಗಿದೆ. ಜಾಗರೂಕರಾಗಿರಿ ಮತ್ತು ಜಾಗರೂಕರಾಗಿರಿ."
+  },
+  "actions": {
+   "Move to higher ground.": "ಎತ್ತರದ ನೆಲಕ್ಕೆ ಸರಿಸಿ.",
+   "Stay indoors.": "ಮನೆಯೊಳಗೆ ಇರಿ.",
+   "Do not go near rivers or streams.": "ನದಿಗಳು ಅಥವಾ ಹೊಳೆಗಳ ಬಳಿ ಹೋಗಬೇಡಿ.",
+   "Switch off gas and electricity.": "ಅನಿಲ ಮತ್ತು ವಿದ್ಯುತ್ ಅನ್ನು ಆಫ್ ಮಾಡಿ.",
+   "Keep emergency supplies ready.": "ತುರ್ತು ಸಾಮಗ್ರಿಗಳನ್ನು ಸಿದ್ಧವಾಗಿಡಿ.",
+   "Do not spread rumours.": "ವದಂತಿಗಳನ್ನು ಹಬ್ಬಿಸಬೇಡಿ.",
+   "Follow official announcements.": "ಅಧಿಕೃತ ಪ್ರಕಟಣೆಗಳನ್ನು ಅನುಸರಿಸಿ.",
+   "Boil drinking water before use.": "ಬಳಕೆಗೆ ಮೊದಲು ಕುಡಿಯುವ ನೀರನ್ನು ಕುದಿಸಿ.",
+   "Avoid flooded roads.": "ಪ್ರವಾಹದ ರಸ್ತೆಗಳನ್ನು ತಪ್ಪಿಸಿ.",
+   "Stay away from weak buildings.": "ದುರ್ಬಲ ಕಟ್ಟಡಗಳಿಂದ ದೂರವಿರಿ.",
+   "Keep children and old people safe.": "ಮಕ್ಕಳು ಮತ್ತು ವೃದ್ಧರನ್ನು ಸುರಕ್ಷಿತವಾಗಿಡಿ.",
+   "Move to the nearest relief camp.": "ಹತ್ತಿರದ ಪರಿಹಾರ ಶಿಬಿರಕ್ಕೆ ತೆರಳಿ.",
+   "Do not touch fallen power lines.": "ಬಿದ್ದಿರುವ ವಿದ್ಯುತ್ ತಂತಿಗಳನ್ನು ಮುಟ್ಟಬೇಡಿ.",
+   "Keep your phone charged.": "ನಿಮ್ಮ ಫೋನ್ ಅನ್ನು ಚಾರ್ಜ್ ಮಾಡಿ.",
+   "Carry important documents with you.": "ಪ್ರಮುಖ ದಾಖಲೆಗಳನ್ನು ನಿಮ್ಮೊಂದಿಗೆ ಕೊಂಡೊಯ್ಯಿರಿ.",
+   "Fishermen must not go to sea.": "ಮೀನುಗಾರರು ಸಮುದ್ರಕ್ಕೆ ಹೋಗಬಾರದು.",
+   "Stay alert and be careful.": "ಜಾಗರೂಕರಾಗಿರಿ ಮತ್ತು ಜಾಗರೂಕರಾಗಿರಿ.",
+   "Evacuate immediately if told to.": "ಹೇಳಿದರೆ ತಕ್ಷಣ ತೆರವು ಮಾಡಿ.",
+   "Close doors and windows.": "ಬಾಗಿಲು ಮತ್ತು ಕಿಟಕಿಗಳನ್ನು ಮುಚ್ಚಿ.",
+   "Drink water and stay in the shade.": "ನೀರು ಕುಡಿದು ನೆರಳಿನಲ್ಲಿ ಇರಿ."
+  },
+  "safety": [
+   "ಮೊದಲು ಮಕ್ಕಳು ಮತ್ತು ವೃದ್ಧರಿಗೆ ಸಹಾಯ ಮಾಡಿ.",
+   "ಹೊಸ ನವೀಕರಣಗಳಿಗಾಗಿ ರೇಡಿಯೊವನ್ನು ಆಲಿಸಿ."
+  ]
+ },
+ "ml": {
+  "events": {
+   "Flood": "വെള്ളപ്പൊക്കം",
+   "Cyclone": "ചുഴലിക്കാറ്റ്",
+   "Earthquake": "ഭൂകമ്പം",
+   "Heatwave": "ഹീറ്റ് വേവ്",
+   "Landslide": "മണ്ണിടിച്ചിൽ",
+   "Thunderstorm": "ഇടിമിന്നൽ",
+   "Fire": "തീ"
+  },
+  "header": "{icon} {event} അലേർട്ട് {area}.",
+  "severity": {
+   "Extreme": "ഇതൊരു തീവ്രമായ മുന്നറിയിപ്പാണ്. ഇപ്പോൾ പ്രവർത്തിക്കുക.",
+   "Severe": "ഇതൊരു കടുത്ത മുന്നറിയിപ്പാണ്. ഇപ്പോൾ തയ്യാറാകൂ.",
+   "Advisory": "ഇതൊരു ഉപദേശമാണ്. ജാഗ്രത പാലിക്കുക, ശ്രദ്ധിക്കുക."
+  },
+  "actions": {
+   "Move to higher ground.": "ഉയർന്ന സ്ഥലത്തേക്ക് നീങ്ങുക.",
+   "Stay indoors.": "വീടിനുള്ളിൽ തന്നെ ഇരിക്കുക.",
+   "Do not go near rivers or streams.": "നദികൾക്കും അരുവികൾക്കും സമീപം പോകരുത്.",
+   "Switch off gas and electricity.": "ഗ്യാസും വൈദ്യുതിയും ഓഫ് ചെയ്യുക.",
+   "Keep emergency supplies ready.": "അടിയന്തര സാമഗ്രികൾ തയ്യാറായി സൂക്ഷിക്കുക.",
+   "Do not spread rumours.": "കിംവദന്തികൾ പ്രചരിപ്പിക്കരുത്.",
+   "Follow official announcements.": "ഔദ്യോഗിക അറിയിപ്പുകൾ പിന്തുടരുക.",
+   "Boil drinking water before use.": "ഉപയോഗിക്കുന്നതിന് മുമ്പ് കുടിവെള്ളം തിളപ്പിക്കുക.",
+   "Avoid flooded roads.": "വെള്ളം കയറിയ റോഡുകൾ ഒഴിവാക്കുക.",
+   "Stay away from weak buildings.": "ദുർബലമായ കെട്ടിടങ്ങളിൽ നിന്ന് അകന്നു നിൽക്കുക.",
+   "Keep children and old people safe.": "കുട്ടികളെയും പ്രായമായവരെയും സുരക്ഷിതമായി സൂക്ഷിക്കുക.",
+   "Move to the nearest relief camp.": "അടുത്തുള്ള ദുരിതാശ്വാസ ക്യാമ്പിലേക്ക് മാറ്റുക.",
+   "Do not touch fallen power lines.": "വീണ വൈദ്യുതി ലൈനുകളിൽ തൊടരുത്.",
+   "Keep your phone charged.": "നിങ്ങളുടെ ഫോൺ ചാർജിൽ സൂക്ഷിക്കുക.",
+   "Carry important documents with you.": "പ്രധാനപ്പെട്ട രേഖകൾ നിങ്ങളോടൊപ്പം കൊണ്ടുപോകുക.",
+   "Fishermen must not go to sea.": "മത്സ്യത്തൊഴിലാളികൾ കടലിൽ പോകരുത്.",
+   "Stay alert and be careful.": "ജാഗ്രത പാലിക്കുക, ശ്രദ്ധിക്കുക.",
+   "Evacuate immediately if told to.": "പറഞ്ഞാൽ ഉടൻ ഒഴിഞ്ഞുമാറുക.",
+   "Close doors and windows.": "വാതിലുകളും ജനലുകളും അടയ്ക്കുക.",
+   "Drink water and stay in the shade.": "വെള്ളം കുടിക്കുക, തണലിൽ ഇരിക്കുക."
+  },
+  "safety": [
+   "കുട്ടികളെയും പ്രായമായവരെയും ആദ്യം സഹായിക്കുക.",
+   "പുതിയ അപ്ഡേറ്റുകൾക്കായി റേഡിയോ ശ്രവിക്കുക."
+  ]
+ },
+ "mr": {
+  "events": {
+   "Flood": "पूर",
+   "Cyclone": "चक्रीवादळ",
+   "Earthquake": "भूकंप",
+   "Heatwave": "उष्णतेची लाट",
+   "Landslide": "भूस्खलन",
+   "Thunderstorm": "गडगडाट",
+   "Fire": "आग"
+  },
+  "header": "{icon} {area} साठी {event} अलर्ट।",
+  "severity": {
+   "Extreme": "ही एक अत्यंत चेतावणी आहे. आता कृती करा.",
+   "Severe": "ही एक गंभीर चेतावणी आहे. आता तयार व्हा.",
+   "Advisory": "हा सल्लागार आहे. सतर्क राहा आणि सावध रहा."
+  },
+  "actions": {
+   "Move to higher ground.": "उंच जमिनीवर जा.",
+   "Stay indoors.": "घरातच रहा.",
+   "Do not go near rivers or streams.": "नदी किंवा नाल्यांजवळ जाऊ नका.",
+   "Switch off gas and electricity.": "गॅस आणि वीज बंद करा.",
+   "Keep emergency supplies ready.": "आपत्कालीन पुरवठा तयार ठेवा.",
+   "Do not spread rumours.": "अफवा पसरवू नका.",
+   "Follow official announcements.": "अधिकृत घोषणांचे अनुसरण करा.",
+   "Boil drinking water before use.": "वापरण्यापूर्वी पिण्याचे पाणी उकळवा.",
+   "Avoid flooded roads.": "पूरग्रस्त रस्ते टाळा.",
+   "Stay away from weak buildings.": "कमकुवत इमारतींपासून दूर राहा.",
+   "Keep children and old people safe.": "मुले आणि वृद्ध लोकांना सुरक्षित ठेवा.",
+   "Move to the nearest relief camp.": "जवळच्या मदत शिबिरात जा.",
+   "Do not touch fallen power lines.": "पडलेल्या वीज तारांना स्पर्श करू नका.",
+   "Keep your phone charged.": "तुमचा फोन चार्ज ठेवा.",
+   "Carry important documents with you.": "महत्त्वाची कागदपत्रे सोबत ठेवा.",
+   "Fishermen must not go to sea.": "मच्छिमारांनी समुद्रात जाऊ नये.",
+   "Stay alert and be careful.": "सतर्क राहा आणि सावध रहा.",
+   "Evacuate immediately if told to.": "सांगितल्यास ताबडतोब बाहेर काढा.",
+   "Close doors and windows.": "दारे आणि खिडक्या बंद करा.",
+   "Drink water and stay in the shade.": "पाणी प्या आणि सावलीत राहा."
+  },
+  "safety": [
+   "प्रथम मुलांना आणि वृद्धांना मदत करा.",
+   "नवीन अद्यतनांसाठी रेडिओ ऐका."
+  ]
+ },
+ "gu": {
+  "events": {
+   "Flood": "પૂર",
+   "Cyclone": "ચક્રવાત",
+   "Earthquake": "ભૂકંપ",
+   "Heatwave": "હીટવેવ",
+   "Landslide": "ભૂસ્ખલન",
+   "Thunderstorm": "વાવાઝોડું",
+   "Fire": "આગ"
+  },
+  "header": "{icon} {area} માટે {event} ચેતવણી।",
+  "severity": {
+   "Extreme": "આ એક અત્યંત ચેતવણી છે. હવે કાર્ય કરો.",
+   "Severe": "આ એક ગંભીર ચેતવણી છે. હવે તૈયાર થઈ જાઓ.",
+   "Advisory": "આ એક સલાહ છે. સાવચેત રહો અને સાવચેત રહો."
+  },
+  "actions": {
+   "Move to higher ground.": "ઉચ્ચ જમીન પર ખસેડો.",
+   "Stay indoors.": "ઘરની અંદર રહો.",
+   "Do not go near rivers or streams.": "નદીઓ કે નાળાઓની નજીક ન જશો.",
+   "Switch off gas and electricity.": "ગેસ અને વીજળી બંધ કરો.",
+   "Keep emergency supplies ready.": "કટોકટીનો પુરવઠો તૈયાર રાખો.",
+   "Do not spread rumours.": "અફવાઓ ન ફેલાવો.",
+   "Follow official announcements.": "સત્તાવાર જાહેરાતોને અનુસરો.",
+   "Boil drinking water before use.": "ઉપયોગ કરતા પહેલા પીવાના પાણીને ઉકાળો.",
+   "Avoid flooded roads.": "પૂરવાળા રસ્તાઓ ટાળો.",
+   "Stay away from weak buildings.": "નબળી ઇમારતોથી દૂર રહો.",
+   "Keep children and old people safe.": "બાળકો અને વૃદ્ધોને સુરક્ષિત રાખો.",
+   "Move to the nearest relief camp.": "નજીકના રાહત શિબિરમાં ખસેડો.",
+   "Do not touch fallen power lines.": "પડી ગયેલી વીજ લાઈનોને સ્પર્શ કરશો નહીં.",
+   "Keep your phone charged.": "તમારો ફોન ચાર્જ કરેલો રાખો.",
+   "Carry important documents with you.": "મહત્વપૂર્ણ દસ્તાવેજો તમારી સાથે રાખો.",
+   "Fishermen must not go to sea.": "માછીમારોએ દરિયામાં ન જવું જોઈએ.",
+   "Stay alert and be careful.": "સાવચેત રહો અને સાવચેત રહો.",
+   "Evacuate immediately if told to.": "જો કહેવામાં આવે તો તરત જ ખાલી કરો.",
+   "Close doors and windows.": "દરવાજા અને બારીઓ બંધ કરો.",
+   "Drink water and stay in the shade.": "પાણી પીવો અને છાયામાં રહો."
+  },
+  "safety": [
+   "પહેલા બાળકો અને વૃદ્ધોને મદદ કરો.",
+   "નવા અપડેટ્સ માટે રેડિયો સાંભળો."
+  ]
+ },
+ "pa": {
+  "events": {
+   "Flood": "ਹੜ੍ਹ",
+   "Cyclone": "ਚੱਕਰਵਾਤ",
+   "Earthquake": "ਭੂਚਾਲ",
+   "Heatwave": "ਹੀਟਵੇਵ",
+   "Landslide": "ਜ਼ਮੀਨ ਖਿਸਕਣ",
+   "Thunderstorm": "ਗਰਜ",
+   "Fire": "ਅੱਗ"
+  },
+  "header": "{icon} {area} ਲਈ {event} ਚੇਤਾਵਨੀ।",
+  "severity": {
+   "Extreme": "ਇਹ ਇੱਕ ਅਤਿਅੰਤ ਚੇਤਾਵਨੀ ਹੈ। ਹੁਣ ਕਾਰਵਾਈ ਕਰੋ।",
+   "Severe": "ਇਹ ਇੱਕ ਗੰਭੀਰ ਚੇਤਾਵਨੀ ਹੈ। ਹੁਣੇ ਤਿਆਰ ਹੋ ਜਾਓ।",
+   "Advisory": "ਇਹ ਇੱਕ ਸਲਾਹਕਾਰ ਹੈ। ਸੁਚੇਤ ਰਹੋ ਅਤੇ ਸਾਵਧਾਨ ਰਹੋ।"
+  },
+  "actions": {
+   "Move to higher ground.": "ਉੱਚੀ ਜ਼ਮੀਨ 'ਤੇ ਜਾਓ.",
+   "Stay indoors.": "ਘਰ ਦੇ ਅੰਦਰ ਹੀ ਰਹੋ।",
+   "Do not go near rivers or streams.": "ਨਦੀਆਂ ਜਾਂ ਨਦੀਆਂ ਦੇ ਨੇੜੇ ਨਾ ਜਾਓ।",
+   "Switch off gas and electricity.": "ਗੈਸ ਅਤੇ ਬਿਜਲੀ ਬੰਦ ਕਰੋ।",
+   "Keep emergency supplies ready.": "ਐਮਰਜੈਂਸੀ ਸਪਲਾਈ ਤਿਆਰ ਰੱਖੋ।",
+   "Do not spread rumours.": "ਅਫਵਾਹਾਂ ਨਾ ਫੈਲਾਓ।",
+   "Follow official announcements.": "ਅਧਿਕਾਰਤ ਘੋਸ਼ਣਾਵਾਂ ਦੀ ਪਾਲਣਾ ਕਰੋ।",
+   "Boil drinking water before use.": "ਵਰਤਣ ਤੋਂ ਪਹਿਲਾਂ ਪੀਣ ਵਾਲੇ ਪਾਣੀ ਨੂੰ ਉਬਾਲੋ।",
+   "Avoid flooded roads.": "ਹੜ੍ਹ ਵਾਲੀਆਂ ਸੜਕਾਂ ਤੋਂ ਬਚੋ।",
+   "Stay away from weak buildings.": "ਕਮਜ਼ੋਰ ਇਮਾਰਤਾਂ ਤੋਂ ਦੂਰ ਰਹੋ।",
+   "Keep children and old people safe.": "ਬੱਚਿਆਂ ਅਤੇ ਬਜ਼ੁਰਗਾਂ ਨੂੰ ਸੁਰੱਖਿਅਤ ਰੱਖੋ।",
+   "Move to the nearest relief camp.": "ਨਜ਼ਦੀਕੀ ਰਾਹਤ ਕੈਂਪ ਵਿੱਚ ਚਲੇ ਜਾਓ।",
+   "Do not touch fallen power lines.": "ਡਿੱਗੀਆਂ ਬਿਜਲੀ ਦੀਆਂ ਲਾਈਨਾਂ ਨੂੰ ਨਾ ਛੂਹੋ।",
+   "Keep your phone charged.": "ਆਪਣਾ ਫ਼ੋਨ ਚਾਰਜ ਰੱਖੋ।",
+   "Carry important documents with you.": "ਜ਼ਰੂਰੀ ਦਸਤਾਵੇਜ਼ ਆਪਣੇ ਨਾਲ ਰੱਖੋ।",
+   "Fishermen must not go to sea.": "ਮਛੇਰਿਆਂ ਨੂੰ ਸਮੁੰਦਰ ਵਿੱਚ ਨਹੀਂ ਜਾਣਾ ਚਾਹੀਦਾ।",
+   "Stay alert and be careful.": "ਸੁਚੇਤ ਰਹੋ ਅਤੇ ਸਾਵਧਾਨ ਰਹੋ।",
+   "Evacuate immediately if told to.": "ਜੇਕਰ ਦੱਸਿਆ ਜਾਵੇ ਤਾਂ ਤੁਰੰਤ ਖਾਲੀ ਕਰੋ।",
+   "Close doors and windows.": "ਦਰਵਾਜ਼ੇ ਅਤੇ ਖਿੜਕੀਆਂ ਬੰਦ ਕਰੋ।",
+   "Drink water and stay in the shade.": "ਪਾਣੀ ਪੀਓ ਅਤੇ ਛਾਂ ਵਿੱਚ ਰਹੋ।"
+  },
+  "safety": [
+   "ਪਹਿਲਾਂ ਬੱਚਿਆਂ ਅਤੇ ਬਜ਼ੁਰਗਾਂ ਦੀ ਮਦਦ ਕਰੋ।",
+   "ਨਵੇਂ ਅੱਪਡੇਟ ਲਈ ਰੇਡੀਓ ਸੁਣੋ।"
+  ]
+ }
+}

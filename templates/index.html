@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}LastMile Alert — Home{% endblock %}
+{% block content %}
+<div class="hero">
+  <span class="demo-tag">FICTIONAL DEMO DATA</span>
+  <h1>🚨 LastMile Alert</h1>
+  <p><strong>Emergency Warning Accessibility Platform.</strong> Takes an official emergency
+  alert and makes it clearer, multilingual, visual, and deliverable over low-bandwidth
+  channels — with full delivery and acknowledgement tracking.</p>
+  <p class="small">The <strong>OFFICIAL</strong> alert is never changed. The
+  <strong>SIMPLIFIED</strong> version is a community-friendly interpretation that preserves
+  the original meaning, urgency, area, and action.</p>
+  <div class="row" style="margin-top:14px">
+    <a class="btn green" href="/new">＋ New Alert</a>
+    <a class="btn ghost" href="/debug">Debug Console</a>
+    <button class="btn red" onclick="demoReset()">⟲ Reset Demo</button>
+  </div>
+</div>
+
+<div class="card" id="alerts">
+  <h2>Processed Alerts</h2>
+  <div id="alerts-grid" class="grid"><p class="small">Loading…</p></div>
+  <p class="small" style="margin-bottom:0">Citizen side (for demo): <a href="/register">/register</a> · <a href="/u">/u</a> — opens the separate citizen interface.</p>
+</div>
+{% endblock %}
+{% block scripts %}
+<script>
+async function loadAlerts() {
+  const r = await api("/api/alerts");
+  const grid = document.getElementById("alerts-grid");
+  if (!r.ok) { showError("page-error", (r.data && r.data.error) || "Could not load alerts."); grid.innerHTML = ""; return; }
+  if (!r.data.length) { grid.innerHTML = "<p>No alerts yet. Create one with <strong>New Alert</strong>.</p>"; return; }
+  grid.innerHTML = "";
+  r.data.forEach(function (a) {
+    const langs = Object.keys(a.translations || {}).length;
+    const card = document.createElement("div");
+    card.className = "card alert-card";
+    card.innerHTML =
+      '<span class="sev ' + a.severity_color + '">' + escapeHtml(a.severity) + '</span> ' +
+      '<h3 style="margin:8px 0">' + escapeHtml(a.disaster_type) + ' — ' + escapeHtml(a.state) + '</h3>' +
+      '<p class="small">' + escapeHtml(a.affected_area) + '<br>' + escapeHtml(a.created_at || "") +
+      ' · ' + langs + ' languages</p>' +
+      '<div class="row"><a class="btn" href="/alert/' + a.id + '">Open Alert</a>' +
+      '<a class="btn ghost" href="/alert/' + a.id + '/delivery">Delivery</a>' +
+      '<a class="btn ghost" href="/alert/' + a.id + '/tracker">Tracker</a></div>';
+    grid.appendChild(card);
+  });
+}
+document.addEventListener("DOMContentLoaded", loadAlerts);
+</script>
+{% endblock %}

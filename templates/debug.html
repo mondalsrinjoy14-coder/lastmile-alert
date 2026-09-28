@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block title %}Debug Console — LastMile Alert{% endblock %}
+{% block content %}
+<div class="card">
+  <h2>🐞 Debug Console <span class="small">route: /debug</span></h2>
+  <p class="small">Timestamped backend events, pipeline events, API events, errors, processing times and retries.
+  The same log is saved to <span class="mono">debug.log</span>.</p>
+  <div class="row">
+    <button class="btn" onclick="refresh()">⟳ Refresh</button>
+    <label class="small" style="display:flex;align-items:center;gap:6px">
+      <input type="checkbox" id="auto" checked> auto-refresh (3s)
+    </label>
+  </div>
+</div>
+
+<div class="card">
+  <h3>Backend events</h3>
+  <div class="table-wrap"><table class="log-table">
+    <thead><tr><th>Timestamp</th><th>Category</th><th>Message</th></tr></thead>
+    <tbody id="log-body"><tr><td colspan="3">Loading…</td></tr></tbody>
+  </table></div>
+</div>
+
+<div class="card">
+  <h3>Diagnostics — frontend API calls this session</h3>
+  <div class="table-wrap"><table class="log-table">
+    <thead><tr><th>Time</th><th>Endpoint</th><th>HTTP</th><th>Latency</th><th>Payload</th></tr></thead>
+    <tbody id="diag-body"><tr><td colspan="5">No API calls yet in this session.</td></tr></tbody>
+  </table></div>
+</div>
+
+<div class="card">
+  <h3>Backend health</h3>
+  <pre class="mono small" id="health-json">Loading…</pre>
+</div>
+{% endblock %}
+{% block scripts %}
+<script>
+async function refresh() {
+  const r = await api("/api/diagnostics");
+  const tb = document.getElementById("log-body");
+  if (r.ok && r.data.length) {
+    tb.innerHTML = r.data.slice().reverse().map(function (e) {
+      return "<tr><td>" + escapeHtml(e.ts) + "</td><td class='cat " + escapeHtml(e.category) +
+        "'>" + escapeHtml(e.category) + "</td><td>" + escapeHtml(e.message) + "</td></tr>";
+    }).join("");
+  } else tb.innerHTML = "<tr><td colspan='3'>No events yet.</td></tr>";
+
+  const h = await api("/api/health");
+  if (h.ok) document.getElementById("health-json").textContent = JSON.stringify(h.data, null, 2);
+
+  const db = document.getElementById("diag-body");
+  if (window.__diag.length) {
+    db.innerHTML = window.__diag.map(function (d) {
+      return "<tr><td>" + escapeHtml(d.ts) + "</td><td class='mono'>" + escapeHtml(d.endpoint) +
+        "</td><td>" + d.status + "</td><td>" + d.ms + " ms</td><td class='mono'>" +
+        escapeHtml(JSON.stringify(d.payload)) + "</td></tr>";
+    }).join("");
+  }
+}
+setInterval(function () {
+  if (document.getElementById("auto").checked) refresh();
+}, 3000);
+document.addEventListener("DOMContentLoaded", refresh);
+</script>
+{% endblock %}

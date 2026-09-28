@@ -1,0 +1,141 @@
+{% extends "citizen_base.html" %}
+{% block title %}LastMile Alert — My Alerts{% endblock %}
+{% block content %}
+<div id="page-error"></div>
+
+<div id="need-register" class="card" style="display:none;max-width:560px;margin:0 auto;text-align:center">
+  <h2>🚨 My Alerts</h2>
+  <p>You're not registered on this device yet. Register once to receive
+  emergency alerts for your area in your language.</p>
+  <a class="btn green" href="/register">✍️ Register now</a>
+</div>
+
+<div id="user-home" style="display:none">
+  <div class="card">
+    <div class="row" style="justify-content:space-between">
+      <div>
+        <h2 style="margin:0">🚨 <span id="u-greet">My Alerts</span></h2>
+        <p class="small" id="u-sub" style="margin:4px 0 0"></p>
+      </div>
+      <button class="btn ghost" onclick="switchUser()">Switch user</button>
+    </div>
+  </div>
+  <div id="alerts-list"></div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script>
+function uid() {
+  try { var stored = localStorage.getItem("lm_uid"); if (stored) return stored; } catch (e) {}
+  try { return sessionStorage.getItem("lm_uid"); } catch (e) { return null; }
+}
+
+function switchUser() {
+  try { localStorage.removeItem("lm_uid"); } catch (e) {}
+  try { sessionStorage.removeItem("lm_uid"); } catch (e) {}
+  location.href = "/register";
+}
+
+async function loadUser() {
+  var id = uid();
+  if (!id) {
+    document.getElementById("need-register").style.display = "";
+    return;
+  }
+  var r = await api("/api/users/" + encodeURIComponent(id) + "/alerts");
+  if (!r.ok) {
+    if (r.status !== 404) { showError("page-error", (r.data && r.data.error) || "Could not refresh alerts. Try again shortly."); return; }
+    try { localStorage.removeItem("lm_uid"); sessionStorage.removeItem("lm_uid"); } catch (e) {}
+    document.getElementById("user-home").style.display = "none";
+    document.getElementById("need-register").style.display = "";
+    return;
+  }
+  clearError("page-error");
+  document.getElementById("need-register").style.display = "none";
+  var user = r.data.user;
+  document.getElementById("user-home").style.display = "";
+  document.getElementById("u-greet").textContent = "My Alerts";
+  document.getElementById("u-sub").textContent =
+    user.name + " · " + user.village + ", " + user.state + " · " + user.language + " · via " + user.channel;
+
+  var list = document.getElementById("alerts-list");
+  list.innerHTML = "";
+  if (!r.data.alerts.length) {
+    list.innerHTML = "<div class='card'><p>No alerts right now. You're registered — we'll reach you here when one comes.</p></div>";
+    return;
+  }
+  r.data.alerts.forEach(function (a) { list.appendChild(alertCard(a, user)); });
+  var urgent = r.data.alerts.filter(function (a) {
+    return a.in_my_state && a.ack_status !== "Acknowledged" && a.read_status !== "Read";
+  });
+  window.LastMileBuzzer.consider(urgent, "citizen-" + user.id);
+}
+
+function alertCard(a, user) {
+  var card = document.createElement("div");
+  card.className = "card";
+  var tag = a.in_my_state
+    ? "<span class='pill green'>📍 Your area</span>"
+    : "<span class='pill'>" + escapeHtml(a.state) + "</span>";
+  var head =
+    "<div class='row' style='justify-content:space-between'>" +
+      "<span class='sev " + a.severity_color + "'>" + escapeHtml(a.severity) + "</span>" + tag +
+    "</div>" +
+    "<h3 style='margin:8px 0 2px'>" + escapeHtml(a.disaster_type) + "</h3>" +
+    "<p class='small' style='margin-top:0'>" + escapeHtml(a.affected_area) +
+    " · " + escapeHtml(a.created_at || "") + "</p>";
+  var bubble =
+    "<div class='phone-msg' style='max-width:none'>" +
+      "<div class='phone-msg-text'>" + escapeHtml(a.message) + "</div>" +
+    "</div>";
+  var body = document.createElement("div");
+  body.innerHTML = head + bubble;
+
+  var actions = document.createElement("div");
+  actions.className = "row";
+  if (a.ack_status === "Acknowledged") {
+    window.LastMileBuzzer.stop();
+    actions.innerHTML = "<span class='pill green'>🙏 You marked yourself safe</span>";
+  } else if (a.read_status === "Read") {
+    window.LastMileBuzzer.stop();
+    actions.innerHTML = "<span class='pill green'>✓ Got it</span>";
+  }
+  if (a.ack_status !== "Acknowledged") {
+    var b1 = document.createElement("button");
+    b1.className = "btn"; b1.textContent = "✓ Got it";
+    b1.onclick = function () { markRead(a.id, user.id, actions, user); };
+    var b2 = document.createElement("button");
+    b2.className = "btn green"; b2.textContent = "🙏 I'm Safe";
+    b2.onclick = function () { markSafe(a.id, user.id, actions); };
+    actions.appendChild(b1); actions.appendChild(b2);
+  }
+  body.appendChild(actions);
+  card.appendChild(body);
+  return card;
+}
+
+async function markRead(alertId, userId, actions) {
+  var r = await api("/api/alerts/" + alertId + "/read", {
+    method: "POST",
+    body: JSON.stringify({ recipient_id: userId })
+  });
+  if (!r.ok) { showError("page-error", (r.data && r.data.error) || "Could not update."); return; }
+  window.LastMileBuzzer.stop();
+  await loadUser();
+}
+
+async function markSafe(alertId, userId, actions) {
+  var r = await api("/api/alerts/" + alertId + "/acknowledge", {
+    method: "POST",
+    body: JSON.stringify({ recipient_id: userId })
+  });
+  if (!r.ok) { showError("page-error", (r.data && r.data.error) || "Could not update."); return; }
+  window.LastMileBuzzer.stop();
+  await loadUser();
+}
+
+document.addEventListener("DOMContentLoaded", loadUser);
+// Poll only an open, visible citizen page; a website cannot sound while closed.
+setInterval(function () { if (!document.hidden && uid()) loadUser(); }, 15000);
+</script>
+{% endblock %}

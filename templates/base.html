@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}LastMile Alert{% endblock %}</title>
+<link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+<header class="navbar">
+  <a class="brand" href="/">🚨 LastMile Alert</a>
+  <nav>
+    <a href="/">Home</a>
+    <a href="/new">New Alert</a>
+    <a href="/debug">Debug Console</a>
+  </nav>
+  <span class="spacer"></span>
+  <span class="a11y no-print">
+    <button id="btn-big" onclick="toggleBigText()" title="Double font sizes for low vision">A+ Big Text</button>
+    <button id="btn-hc" onclick="toggleHighContrast()" title="High contrast mode">◐ Contrast</button>
+  </span>
+  <span class="health"><span id="health-dot" class="dot"></span><span id="health-text">Checking…</span></span>
+</header>
+<main class="container">
+  <div id="page-error"></div>
+  {% block content %}{% endblock %}
+</main>
+<div class="buzzer-controls no-print" aria-label="Alert sound controls">
+  <button class="btn ghost" id="buzzer-enable" type="button" aria-pressed="false">Enable alert sound</button>
+  <button class="btn ghost" id="buzzer-stop" type="button">Stop sound</button>
+  <span id="buzzer-status" role="status" aria-live="polite">Sound off. Enable for Extreme and Severe alerts.</span>
+</div>
+<script src="/static/js/app.js"></script>
+<script src="/static/js/buzzer.js"></script>
+{% block scripts %}{% endblock %}
+</body>
+</html>

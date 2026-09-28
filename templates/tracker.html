@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+{% block title %}Tracker Dashboard — LastMile Alert{% endblock %}
+{% block content %}
+<div class="card">
+  <h2>📊 Acknowledgement / Receipt Tracker <span class="small" id="t-alert"></span></h2>
+  <p class="small">Live status reported by recipients' phones — this dashboard is read-only.
+  To simulate a villager responding, open the <a id="link-phone" href="#">📱 One Message phone view</a>
+  and tap the buttons <i>as the recipient</i>.</p>
+  <div class="row">
+    <a class="btn ghost" href="/alert/{{ alert_id }}">← Back to Pipeline</a>
+    <a class="btn ghost" href="/alert/{{ alert_id }}/delivery">Delivery →</a>
+  </div>
+</div>
+
+<div class="card">
+  <h3>Statistics</h3>
+  <div class="stat-grid" id="stats"></div>
+</div>
+
+<div class="row">
+  <div class="card" style="flex:1;min-width:280px">
+    <h3>Delivery status</h3>
+    <div class="donut" id="donut"></div>
+    <div class="legend" id="donut-legend"></div>
+  </div>
+  <div class="card" style="flex:1;min-width:280px">
+    <h3>By channel</h3>
+    <div id="channel-bars"></div>
+    <h3 style="margin-top:14px">By language</h3>
+    <div id="lang-bars"></div>
+  </div>
+</div>
+
+<div class="card">
+  <h3>Recipients</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Name</th><th>Village</th><th>State</th><th>Language</th><th>Channel</th>
+    <th>Delivery</th><th>Read</th><th>Acknowledged</th><th>Response</th></tr></thead>
+    <tbody id="recipients"></tbody>
+  </table></div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script>
+var ALERT_ID = {{ alert_id }};
+var COLORS = { Delivered: "#2e7d32", Failed: "#d32f2f", Read: "#1565c0", Acknowledged: "#6a1b9a", "No Response": "#9e9e9e", "Not Read": "#bdbdbd" };
+
+async function loadTracker() {
+  document.getElementById("link-phone").href = "/alert/" + ALERT_ID + "/message";
+  const a = await api("/api/alerts/" + ALERT_ID);
+  if (a.ok) document.getElementById("t-alert").textContent = "— " + a.data.disaster_type + ", " + a.data.state;
+  const r = await api("/api/alerts/" + ALERT_ID + "/tracker");
+  if (!r.ok) { showError("page-error", r.data.error || "Tracker failed."); return; }
+  renderTracker(r.data);
+}
+
+function renderTracker(d) {
+  const s = d.stats;
+  const cards = [["Total", s.total, "#10243e"], ["Delivered", s.delivered, "#2e7d32"],
+    ["Read", s.read, "#1565c0"], ["Acknowledged", s.acknowledged, "#6a1b9a"],
+    ["Failed", s.failed, "#d32f2f"], ["No Response", s.no_response, "#9e9e9e"]];
+  document.getElementById("stats").innerHTML = cards.map(function (c) {
+    return '<div class="stat"><div class="n" style="color:' + c[2] + '">' + c[1] + '</div><div class="l">' + c[0] + '</div></div>';
+  }).join("");
+
+  // Donut chart (pure CSS conic-gradient, no libraries).
+  const parts = [["Delivered", s.delivered, "#2e7d32"], ["Failed", s.failed, "#d32f2f"],
+    ["No Response", s.no_response, "#9e9e9e"]];
+  const total = Math.max(s.total, 1);
+  let acc = 0, segs = [];
+  parts.forEach(function (p) {
+    const frac = p[1] / total;
+    segs.push(p[2] + " " + (acc * 100) + "% " + ((acc + frac) * 100) + "%");
+    acc += frac;
+  });
+  document.getElementById("donut").style.background = "conic-gradient(" + segs.join(",") + ")";
+  document.getElementById("donut-legend").innerHTML = parts.map(function (p) {
+    return '<span><i style="background:' + p[2] + '"></i>' + p[0] + ': ' + p[1] + '</span>';
+  }).join("");
+
+  // Bar charts (plain divs).
+  document.getElementById("channel-bars").innerHTML = barHtml(countBy(d.recipients, "channel"), total);
+  document.getElementById("lang-bars").innerHTML = barHtml(countBy(d.recipients, "language"), total);
+
+  const tb = document.getElementById("recipients");
+  tb.innerHTML = "";
+  d.recipients.forEach(function (x) {
+    const tr = document.createElement("tr");
+    const acked = x.ack_status === "Acknowledged";
+    tr.innerHTML = "<td>" + escapeHtml(x.name) + "</td><td>" + escapeHtml(x.village) + "</td><td>" +
+      escapeHtml(x.state) + "</td><td>" + escapeHtml(x.language) + "</td><td>" + escapeHtml(x.channel) +
+      "</td><td>" + escapeHtml(x.delivery_status) + "</td><td>" + escapeHtml(x.read_status) + "</td><td>" +
+      escapeHtml(x.ack_status) + "</td><td>" +
+      (acked ? "✓ safe" : "Waiting…") + "</td>";
+    tb.appendChild(tr);
+  });
+}
+
+function countBy(rows, key) {
+  const m = {};
+  rows.forEach(function (r) { m[r[key]] = (m[r[key]] || 0) + 1; });
+  return m;
+}
+function barHtml(map, total) {
+  return Object.keys(map).sort().map(function (k) {
+    const pct = Math.round(map[k] / total * 100);
+    const color = COLORS[k] || "#1565c0";
+    return '<div class="bar"><div class="lbl">' + escapeHtml(k) + '</div>' +
+      '<div class="track"><div class="fill" style="width:' + pct + '%;background:' + color + '"></div></div>' +
+      '<div class="val">' + map[k] + '</div></div>';
+  }).join("");
+}
+
+document.addEventListener("DOMContentLoaded", loadTracker);
+</script>
+{% endblock %}

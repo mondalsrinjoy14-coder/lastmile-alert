@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}LastMile Alert{% endblock %}</title>
+<link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+<header class="navbar citizen-bar">
+  <span class="brand">🚨 LastMile Alert</span>
+  <span class="citizen-tag">Citizen</span>
+</header>
+<main class="wrap">
+  {% block content %}{% endblock %}
+</main>
+<div class="buzzer-controls no-print" aria-label="Alert sound controls">
+  <button class="btn ghost" id="buzzer-enable" type="button" aria-pressed="false">Enable alert sound</button>
+  <button class="btn ghost" id="buzzer-stop" type="button">Stop sound</button>
+  <span id="buzzer-status" role="status" aria-live="polite">Sound off. Enable for Extreme and Severe alerts.</span>
+</div>
+<script src="/static/js/app.js"></script>
+<script src="/static/js/buzzer.js"></script>
+{% block scripts %}{% endblock %}
+</body>
+</html>

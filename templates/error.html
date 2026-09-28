@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Something went wrong — LastMile Alert{% endblock %}
+{% block content %}
+<div class="card" style="text-align:center;max-width:560px;margin:40px auto">
+  <div style="font-size:64px">😕</div>
+  <h2>Something went wrong</h2>
+  <p><strong>Error {{ code }}:</strong> {{ message }}</p>
+  <p class="small">No technical details are shown here. Use the buttons below to go back or share what happened.</p>
+  <div class="row" style="justify-content:center">
+    <a class="btn green" href="/">← Back to Home</a>
+    <button class="btn ghost" onclick="copyErrorDetails()">📋 Copy Error Details</button>
+  </div>
+  <p id="error-details" class="small mono" style="margin-top:16px">Error {{ code }} — {{ message }} (LastMile Alert)</p>
+</div>
+{% endblock %}

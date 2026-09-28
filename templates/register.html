@@ -1,0 +1,99 @@
+{% extends "citizen_base.html" %}
+{% block title %}LastMile Alert — Register{% endblock %}
+{% block content %}
+<div class="card" style="max-width:560px;margin:0 auto">
+  <h2>✍️ Register for Alerts</h2>
+  <p class="small">One-time registration. Your details are stored, and emergency
+  alerts for your area are sent to you in your language. You can confirm
+  you're safe right from your alerts page.</p>
+  <div id="page-error"></div>
+  <form id="reg-form" onsubmit="doRegister(event); return false;">
+    <label>Your name
+      <input id="f-name" type="text" required maxlength="120" placeholder="e.g. Rina Das" autocomplete="name">
+    </label>
+    <label>Village / Town
+      <input id="f-village" type="text" maxlength="120" placeholder="e.g. Majuli">
+    </label>
+    <div class="row">
+      <label style="flex:1">State
+        <select id="f-state" required><option value="">— choose —</option></select>
+      </label>
+      <label style="flex:1">Language
+        <select id="f-lang" required><option value="">— choose —</option></select>
+      </label>
+    </div>
+    <label>How should alerts reach you?
+      <select id="f-channel">
+        <option>SMS</option>
+        <option>App</option>
+        <option>Community Relay</option>
+      </select>
+    </label>
+    <div class="row" style="margin-top:12px">
+      <button id="register-button" class="btn green" type="submit">Register</button>
+      <a class="btn ghost" href="/u">I already registered →</a>
+    </div>
+  </form>
+</div>
+{% endblock %}
+{% block scripts %}
+<script>
+var STATES = ["Andhra Pradesh","Arunachal Pradesh","Assam","Bihar","Chhattisgarh","Delhi","Goa","Gujarat","Haryana","Himachal Pradesh","Jammu & Kashmir","Jharkhand","Karnataka","Kerala","Ladakh","Lakshadweep","Madhya Pradesh","Maharashtra","Manipur","Meghalaya","Mizoram","Nagaland","Odisha","Puducherry","Punjab","Rajasthan","Sikkim","Tamil Nadu","Telangana","Tripura","Uttar Pradesh","Uttarakhand","West Bengal","Andaman & Nicobar","Chandigarh","Dadra and Nagar Haveli and Daman and Diu"];
+
+function fillSelects() {
+  var st = document.getElementById("f-state");
+  STATES.forEach(function (s) {
+    var o = document.createElement("option"); o.textContent = s; st.appendChild(o);
+  });
+  api("/api/languages").then(function (r) {
+    if (!r.ok || !Array.isArray(r.data)) { showError("page-error", "Could not load languages. Check the backend and refresh."); return; }
+    var lg = document.getElementById("f-lang");
+    r.data.forEach(function (l) {
+      var o = document.createElement("option");
+      o.value = l.name; o.textContent = l.name; lg.appendChild(o);
+    });
+  });
+}
+
+async function doRegister(ev) {
+  ev.preventDefault();
+  clearError("page-error");
+  var button = document.getElementById("register-button");
+  if (button.disabled) return false;
+  button.disabled = true;
+  button.textContent = "Registering…";
+  try {
+  var r = await api("/api/register", {
+    method: "POST",
+    body: JSON.stringify({
+      name: document.getElementById("f-name").value,
+      village: document.getElementById("f-village").value,
+      state: document.getElementById("f-state").value,
+      language: document.getElementById("f-lang").value,
+      channel: document.getElementById("f-channel").value
+    })
+  });
+  if (!r.ok) {
+    showError("page-error", (r.data && r.data.error) || "Registration failed.");
+    return false;
+  }
+  var saved = false;
+  try { localStorage.setItem("lm_uid", String(r.data.recipient.id)); saved = true; } catch (e) {}
+  if (!saved) {
+    try { sessionStorage.setItem("lm_uid", String(r.data.recipient.id)); saved = true; } catch (e) {}
+  }
+  if (!saved) { showError("page-error", "Registration saved, but this browser blocks storage. Enable site storage to keep your registration on this device."); return false; }
+  location.href = "/u";
+  return false;
+  } catch (error) {
+    showError("page-error", "Registration could not finish. Please check the connection and try again.");
+    return false;
+  } finally {
+    button.disabled = false;
+    button.textContent = "Register";
+  }
+}
+
+document.addEventListener("DOMContentLoaded", fillSelects);
+</script>
+{% endblock %}

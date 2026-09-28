@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Runtime-generated files (recreated automatically by seed.py / app.py)
+alerts.db
+debug.log
+
+# OS / editors
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

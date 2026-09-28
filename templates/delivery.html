@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+{% block title %}Delivery Simulator — LastMile Alert{% endblock %}
+{% block content %}
+<div class="card">
+  <h2>📡 Delivery Simulator <span class="small" id="d-alert"></span></h2>
+  <p class="small">Everything here is <strong>simulated locally</strong>. No real SMS, phone numbers, or telecom networks are used.</p>
+  <div class="row">
+    <a class="btn ghost" href="/alert/{{ alert_id }}">← Back to Pipeline</a>
+    <a class="btn ghost" href="/alert/{{ alert_id }}/tracker">Tracker →</a>
+  </div>
+</div>
+
+<div class="card">
+  <h3>✉ SMS Simulation</h3>
+  <label for="sms-lang">Message language</label>
+  <select id="sms-lang" style="max-width:320px"></select>
+  <div class="row" style="margin:10px 0">
+    <button class="btn green" id="sms-btn" onclick="runSms()">▶ Run SMS Simulation</button>
+  </div>
+  <div id="sms-out"></div>
+</div>
+
+<div class="card">
+  <h3>📟 USSD Simulation (feature phones)</h3>
+  <p class="small">A simulated USSD session, as it would appear on a basic phone without internet. Not connected to any real network.</p>
+  <div id="ussd-out"><p class="small">Run the SMS simulation to generate the USSD session.</p></div>
+</div>
+
+<div class="card">
+  <h3>🤝 Offline Community Relay</h3>
+  <p class="small">The alert travels through <strong>5 volunteers</strong>, offline. Every hop runs a message-integrity check.</p>
+  <button class="btn green" id="relay-btn" onclick="runRelay()">▶ Run 5-Volunteer Relay</button>
+  <div id="relay-out" style="margin-top:12px"></div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script>
+var ALERT_ID = {{ alert_id }};
+var ALERT = null;
+
+async function init() {
+  const r = await api("/api/alerts/" + ALERT_ID);
+  if (!r.ok) { showError("page-error", r.data.error || "Alert not found."); return; }
+  ALERT = r.data;
+  document.getElementById("d-alert").textContent = "— " + ALERT.disaster_type + ", " + ALERT.state;
+  const sel = document.getElementById("sms-lang");
+  Object.keys(ALERT.translations).forEach(function (code) {
+    const o = document.createElement("option");
+    o.value = code; o.textContent = ALERT.translations[code].language;
+    sel.appendChild(o);
+  });
+  if (ALERT.has_sms) showCachedSms();
+  if (ALERT.has_relay) showCachedRelay();
+}
+function showCachedSms() {
+  document.getElementById("sms-out").innerHTML =
+    '<p class="small">A simulation was already run for this alert. Run again to re-simulate.</p>';
+  renderUssd(ALERT.ussd_cache || null);
+}
+function showCachedRelay() {
+  document.getElementById("relay-out").innerHTML =
+    '<p class="small">A relay was already run for this alert. Run again to re-simulate.</p>';
+}
+
+async function runSms() {
+  const btn = document.getElementById("sms-btn");
+  btn.disabled = true; btn.textContent = "Simulating…";
+  const lang = document.getElementById("sms-lang").value;
+  const r = await api("/api/alerts/" + ALERT_ID + "/simulate-delivery", "POST", { lang: lang });
+  btn.disabled = false; btn.textContent = "▶ Run SMS Simulation";
+  if (!r.ok) { showError("page-error", r.data.error || "Simulation failed."); return; }
+  renderSms(r.data.sms);
+  renderUssd(r.data.ussd);
+}
+
+function renderSms(sms) {
+  const out = document.getElementById("sms-out");
+  let html = '<p><strong>' + sms.chunk_count + ' chunks</strong> · max ' + sms.chunk_size +
+    ' chars each · language: ' + escapeHtml(sms.language) +
+    (sms.translation_pending ? ' · <span class="pending" style="display:inline">⚠ Translation pending — showing English</span>' : '') +
+    '</p><p class="small">' + escapeHtml(sms.disclaimer) + '</p>';
+  sms.chunks.forEach(function (c) {
+    html += '<div class="chunk"><div class="head"><strong>Chunk ' + c.index + '/' + sms.chunk_count +
+      '</strong> <span class="small">' + c.chars + ' chars</span> ' +
+      '<span class="pill ' + c.final_status + '">' + c.final_status + '</span></div>' +
+      '<div class="mono">' + escapeHtml(c.text) + '</div><div class="events">' +
+      c.events.map(function (e) {
+        const cls = e.status === "FAILED" ? "bad" : (e.status === "DELIVERED" ? "ok" : "");
+        return '<span class="' + cls + '">' + e.status + '</span> @ ' + e.ts +
+          (e.reason ? ' — ' + escapeHtml(e.reason) : '');
+      }).join(" → ") + '</div>' +
+      (c.retried ? '<p class="small">↻ Retried exactly once after failure.</p>' : '') + '</div>';
+  });
+  html += '<p class="small">Total simulated time: ' + sms.total_ms + ' ms (fake network delays).</p>';
+  out.innerHTML = html;
+}
+
+function renderUssd(ussd) {
+  const out = document.getElementById("ussd-out");
+  if (!ussd) return;
+  out.innerHTML = '<p class="small">' + escapeHtml(ussd.disclaimer) + '</p>' +
+    ussd.screens.map(function (s) {
+      return '<div class="screen"><div class="cap">' + escapeHtml(s.screen) + ' · ' + escapeHtml(s.note) + '</div>' +
+        escapeHtml(s.text) + '</div>';
+    }).join("");
+}
+
+async function runRelay() {
+  const btn = document.getElementById("relay-btn");
+  btn.disabled = true; btn.textContent = "Relaying…";
+  const r = await api("/api/alerts/" + ALERT_ID + "/simulate-relay", "POST", {});
+  btn.disabled = false; btn.textContent = "▶ Run 5-Volunteer Relay";
+  if (!r.ok) { showError("page-error", r.data.error || "Relay failed."); return; }
+  const d = r.data;
+  let html = '<p><strong>' + d.volunteer_count + ' volunteers</strong> · ' +
+    (d.all_meanings_preserved
+      ? '<span class="integrity-ok">✓ Meaning preserved across all hops</span>'
+      : '<span class="integrity-bad">✗ Meaning changed somewhere!</span>') +
+    '</p><p class="small">' + escapeHtml(d.disclaimer) + '</p>';
+  d.hops.forEach(function (h, i) {
+    html += '<div class="hop"><div class="who">' + escapeHtml(h.id) + ' — ' + escapeHtml(h.who) + '</div>' +
+      '<div class="small">' + escapeHtml(h.timestamp) + ' · ' + escapeHtml(h.kind) + ' · status: ' + escapeHtml(h.status) + '</div>' +
+      '<div class="small">' + escapeHtml(h.note) + '</div>' +
+      '<div class="' + (h.integrity.match ? "integrity-ok" : "integrity-bad") + '">' +
+      (h.integrity.match ? "✓" : "✗") + ' ' + escapeHtml(h.integrity.verdict) + '</div>' +
+      '<div class="small">' + h.integrity.checks.map(function (c) {
+        return (c.ok ? "✓" : "✗") + " " + escapeHtml(c.name);
+      }).join(" · ") + '</div></div>';
+    if (i < d.hops.length - 1) html += '<div class="arrow">↓</div>';
+  });
+  document.getElementById("relay-out").innerHTML = html;
+}
+document.addEventListener("DOMContentLoaded", init);
+</script>
+{% endblock %}
